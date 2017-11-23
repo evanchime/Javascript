@@ -1,3 +1,5 @@
+/*We use a @font-face block to import a custom web font. 
+This is an icon font — all the characters of the alphabet equate to common icons you might want to use in an application.*/
 @font-face {
     font-family: 'HeydingsControlsRegular';
     src: url('fonts/heydings_controls-webfont.eot');
@@ -21,6 +23,11 @@ p {
   position: absolute;
 }
 
+/*The visibility of the custom controls is set to hidden. In our JavaScript later on, we will set the controls to visible, and remove the controls attribute from the <video> element. 
+This is so that, if the JavaScript doesn't load for some reason, users can still use the video with the native controls.
+We give the controls an opacity of 0.5 by default, so that they are less distracting when you are trying to watch the video. 
+Only when you are hovering/focusing over the player do the controls appear at full opacity.
+We lay out the buttons inside the control bar out using Flexbox (display: flex), to make things easier.*/
 .controls {
   visibility: hidden;
   opacity: 0.5;
@@ -44,6 +51,11 @@ button, .controls {
   opacity: 1;
 }
 
+/*We use the ::before selector to display the content before each <button> element.
+We use the content property to set the content to be displayed in each case to be equal to the contents of the data-icon attribute. 
+In the case of our play button, data-icon contains a capital "P".
+We apply the custom web font to our buttons using font-family. 
+In this font, "P" is actually a "play" icon, so therefore the play button has a "play" icon displayed on it.*/
 button:before {
   font-family: HeydingsControlsRegular;
   font-size: 20px;
@@ -79,7 +91,8 @@ button {
 .fwd {
   border-radius: 0 10px 10px 0;
 }
-
+/*We set the outer .timer <div> to have flex: 5, so it takes up most of the width of the controls bar. 
+We also give it {cssxref("position")}}: relative, so that we can position elements inside it conveniently according to it's boundaries, and not the boundaries of the <body> element*/
 .timer {
   line-height: 38px;
   font-size: 10px;
@@ -90,6 +103,8 @@ button {
   position: relative;
 }
 
+/*The inner <div> is absolutely positioned to sit directly on top of the outer <div>. It is also given an initial width of 0, so you can't see it at all. 
+As the video plays, the width will be increased via JavaScript as the video elapses.*/
 .timer div {
   position: absolute;
   background-color: rgba(255,255,255,0.2);
@@ -100,6 +115,9 @@ button {
   z-index: 2;
 }
 
+/*The <span> is also absolutely positioned to sit near the left hand side of the timer bar.
+We also give our inner <div> and <span> the right amount of z-index 2 and 3 respectively, so that the timer will be displayed on top, 
+and the inner <div> below that. This way, we make sure we can see all the information — one box is not obscuring another.*/
 .timer span {
   position: absolute;
   z-index: 3;
