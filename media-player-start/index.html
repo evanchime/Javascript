@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="en-gb">
   <head>
   	<meta charset="utf-8">
@@ -6,15 +6,20 @@
   	<link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div class="player">
-      <video controls>
+    <div class="player"><!-- The whole player is wrapped in a <div> element, so it can all be styled as one unit if needed.-->
+      <video controls> <!--The <video> element contains two <source> elements so that different formats can be loaded depending on the browser viewing the site.-->
         <source src="video/sintel-short.mp4" type="video/mp4">
         <source src="video/sintel-short.mp4" type="video/webm">
             <!-- fallback content here -->
       </video>
-      <div class="controls">
+      <!--Each <button> below, inside the <div> has a class name, a data-icon attribute for defining what icon should be shown on each button-->
+      <!--and an aria-label attribute to provide an understandable description of each button-->
+        <div class="controls">
         <button class="play" data-icon="P" aria-label="play pause toggle"></button>
         <button class="stop" data-icon="S" aria-label="stop"></button>
+        <!--There is also a timer <div>, which will report the elapsed time when the video is playing-->
+        <!--and it has a <span> containing the elapsed time in minutes and seconds, and an extra <div> 
+            that we will use to create a horizontal indicator bar that gets longer as the time elapses-->
         <div class="timer"><div></div><span aria-label="timer">00:00:00</span></div>
         <button class="rwd" data-icon="B" aria-label="rewind"></button>
         <button class="fwd" data-icon="F" aria-label="fast forward"></button>
